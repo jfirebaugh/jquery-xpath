@@ -1,0 +1,32 @@
+# jQuery XPath
+
+jQuery XPath is a jQuery wrapper for the DOM 3 XPath API exposed by [`document.evaluate()`](https://developer.mozilla.org/en/DOM/document.evaluate).
+
+Instead of trying to remember what all the arguments to document.evaluate() are, and using some awkward iteration function, you can use `$.xquery('//path')` and get back a standard jQuery object. That uses the document as the node context; you can also use `.xquery()` on any jQuery object, which evaluates the XPath expression on each element.
+
+Consider the case of finding an input field labeled by "First Name":
+
+    <ul>
+      <li>
+        <label for="first_name">First Name</label>
+        <input id="first_name" type="text">
+      </li>
+      <li>
+        <label for="last_name">Last Name</label>
+        <input id="last_name" type="text">
+      </li>
+    </ul>
+
+jQuery:
+
+    $("input#" + $("label:contains('First Name')").attr("for"));
+
+jQuery XPath:
+
+    $.xpath("//input[@id=//label[contains(., 'First Name')]/@for]");
+
+Given that the jQuery version is shorter, why would you want to use XPath syntax instead? I don't know. I just wanted a simple API to test or debug XPath expressions. I use it to come up with XPaths for use in my capybara scenarios.
+
+# License
+
+Take your pick: MIT or GPL.
