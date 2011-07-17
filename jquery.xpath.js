@@ -9,7 +9,7 @@
  *
  */
 (function ($) {
-	xp = function (xpath, contextNode) {
+	var xp = function (xpath, contextNode) {
 		var iterator = document.evaluate(xpath, contextNode, null, XPathResult.ANY_TYPE, null),
 		    node     = iterator.iterateNext(),
 		    nodes    = [];
